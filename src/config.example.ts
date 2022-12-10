@@ -61,4 +61,44 @@ export const Config = {
             Interval: 30
         }
     },
+    Sports: {
+        Hockey: [{
+            Team: "Chicago Blackhawks",
+            Leauge: "NHL"
+        }],
+        Football: [{
+            Team: "Chicago Bears",
+            Leauge: "NFL"
+        }],
+        Basketball: [
+            {
+                Team: "Chicago Bulls",
+                Leauge: "NBA"
+            },
+            {
+                Team: "Chicago Sky",
+                Leauge: "WNBA"
+            }
+        ],
+        Baseball: [
+            {
+                Team: "Chicago Cubs",
+                Leauge: "MLB"
+            },
+            {
+                Team: "Chicago White Sox",
+                Leauge: "MLB"
+            }
+        ],
+        Soccer: [
+            {
+                Team: "Chicago Fire Football Club",
+                Leauge: "MLS"
+            },
+            {
+                Team: "Chicago Red Stars",
+                Leauge: "WPS"
+            }
+        ]
+    }
 }

@@ -55,7 +55,7 @@ export class Bot {
             msg.channel.send({
                 files: [{
                     attachment: image as any,
-                    name: 'hockey.jpeg'
+                    name: 'hockey.png'
                 }]
             })
         } catch (error) {
