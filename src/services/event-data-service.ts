@@ -5,7 +5,6 @@ import {
     PartialDMChannel,
     User,
 } from 'discord.js';
-import { Language } from '../models/enum-helpers/index.js';
 import { EventData } from '../models/index.js';
 export class EventDataService {
     public async create(
@@ -17,21 +16,6 @@ export class EventDataService {
         } = {}
     ): Promise<EventData> {
         // TODO: Retrieve any data you want to pass along in events
-
-        // Event language
-        let lang =
-            options.guild?.preferredLocale &&
-            Language.Enabled.includes(options.guild.preferredLocale)
-                ? options.guild.preferredLocale
-                : Language.Default;
-
-        // Guild language
-        let langGuild =
-            options.guild?.preferredLocale &&
-            Language.Enabled.includes(options.guild.preferredLocale)
-                ? options.guild.preferredLocale
-                : Language.Default;
-
-        return new EventData(lang, langGuild);
+        return new EventData();
     }
 }
