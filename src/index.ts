@@ -12,6 +12,11 @@ async function start(): Promise<void> {
     let client: Client = new Client(Config.Client.ClientOptions);
     let bot: Bot = new Bot(Config.Client.Token, client, messageHandler);
     await bot.start();
+    let hockeyWorker = new Worker('./workers/hockey.js', {
+        workerData: {
+          bot: bot,
+          path: './workers/hockey.ts'
+        });
 }
 start().catch(error => {
     console.error(error);
