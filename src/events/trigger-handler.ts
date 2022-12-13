@@ -10,9 +10,9 @@ export class TriggerHandler {
         Config.RateLimiting.Triggers.Amount,
         Config.RateLimiting.Triggers.Interval * 1000
     );
-    private triggers: Trigger[];
+    private triggers: Array<Trigger>;
     private eventDataService: EventDataService;
-    constructor(triggers: Trigger[], eventDataService: EventDataService) {
+    constructor(triggers: Array<Trigger>, eventDataService: EventDataService) {
         this.triggers = triggers;
         this.eventDataService = eventDataService;
     }

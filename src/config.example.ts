@@ -3,7 +3,16 @@ export const Config = {
     Developers: [""],
     Client: {
         Token: "",
-        ChannelId: "",
+        Channels: [
+            {
+                Id: "",
+                Type: "production",
+            },
+            {
+                Id: "",
+                Type: "development",
+            }
+        ],
         ClientOptions: {
             closeTime: 5000,
             shardCount: 1,

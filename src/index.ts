@@ -6,7 +6,7 @@ import { Trigger } from './triggers/index.js';
 import { Config } from './config.js';
 export class Main {
   private eventDataService: EventDataService = new EventDataService();
-  private triggers: Array<Trigger> = [];
+  private triggers: Array<Trigger> = new Array<Trigger>();
   private triggerHandler: TriggerHandler = new TriggerHandler(this.triggers, this.eventDataService);
   private messageHandler: MessageHandler = new MessageHandler(this.triggerHandler);
   private client: Client = new Client(Config.Client.ClientOptions);

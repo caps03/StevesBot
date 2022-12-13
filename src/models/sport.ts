@@ -7,7 +7,7 @@ import { main } from '../index.js';
 import { Bot } from './bot.js';
 class Team{
     private bot: Bot;
-    private channel: TextChannel;
+    private channels: Array<TextChannel>;
     private name: string;
     private league: string;
     private id: string;
@@ -28,7 +28,7 @@ class Team{
         awayTeamAbbreviation: string,
         awayTeamLogo: string,
     };
-    private lastMsg: Message;
+    private lastMessages: Array<Message> = new Array<Message>();
     constructor(name: string, league: string, id: string, sport: string, bot: Bot) {
         this.bot = bot;
         this.name = name;
@@ -67,11 +67,18 @@ class Team{
                 this.parts = 2;
                 break;
         }
-        this.getChannel();
+        this.getChannels();
         this.getNextEvent();
     }
-    private async getChannel(): Promise<void> {
-        this.channel = await this.bot.client.channels.fetch(Config.Client.ChannelId) as TextChannel;
+    private async getChannels(): Promise<void> {
+        Config.Client.Channels.forEach(async (channel) => {
+            if(Config.TestMode && channel.Type == "development") {
+                this.channels.push(await this.bot.client.channels.fetch(channel.Id) as TextChannel);
+            } else if(!Config.TestMode && channel.Type == "production") {
+                this.channels.push(await this.bot.client.channels.fetch(channel.Id) as TextChannel);
+            }
+            
+        });
     }
     private async getNextEvent(): Promise<void> {
         let data = await axios.get<any>(
@@ -197,29 +204,34 @@ class Team{
                 html: html,
                 selector: '#ContainerDiv'
             });
-            if(this.lastMsg == null || this.lastMsg == undefined) {
-                this.lastMsg = await this.channel.send({
-                    files: [{
-                        attachment: image as any,
-                        name: this.sport + '_' + this.name +'.png'
-                    }]
+            if(this.lastMessages.length == 0) {
+                this.channels.forEach(async (channel) => {
+                    let message: Message = await channel.send({
+                        files: [{
+                            attachment: image as any,
+                            name: this.sport + '_' + this.name +'.png'
+                        }]
+                    });
+                    this.lastMessages.push(message);
                 });
             } else {
-                this.lastMsg.edit({
-                    files: [{
-                        attachment: image as any,
-                        name: this.sport + '_' + this.name +'.png'
-                    }]
+                this.lastMessages.forEach(async (message) => {
+                    message.edit({
+                        files: [{
+                            attachment: image as any,
+                            name: this.sport + '_' + this.name +'.png'
+                        }]
+                    });
                 });
             }
             if(this.nextEvent.isComplete) {
-                this.lastMsg = null;
+                this.lastMessages = new Array<Message>();
             }
         }
     }
 }
 export class Sport {
-    private teams: Array<Team> = [];
+    private teams: Array<Team> = new Array<Team>();
     private bot: Bot;
     constructor(bot: Bot) {
         this.bot = bot;
