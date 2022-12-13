@@ -2,8 +2,8 @@ import { IntentsBitField, Partials } from "discord.js";
 export const Config = {
     Developers: [""],
     Client: {
-        Id: "",
         Token: "",
+        ChannelId: "",
         ClientOptions: {
             closeTime: 5000,
             shardCount: 1,
@@ -61,44 +61,56 @@ export const Config = {
             Interval: 30
         }
     },
-    Sports: {
-        Hockey: [{
+    Teams: [
+        {
             Team: "Chicago Blackhawks",
-            Leauge: "NHL"
-        }],
-        Football: [{
+            League: "nhl",
+            Id: "4",
+            Sport: "hockey",
+        },
+        {
             Team: "Chicago Bears",
-            Leauge: "NFL"
-        }],
-        Basketball: [
-            {
-                Team: "Chicago Bulls",
-                Leauge: "NBA"
-            },
-            {
-                Team: "Chicago Sky",
-                Leauge: "WNBA"
-            }
-        ],
-        Baseball: [
-            {
-                Team: "Chicago Cubs",
-                Leauge: "MLB"
-            },
-            {
-                Team: "Chicago White Sox",
-                Leauge: "MLB"
-            }
-        ],
-        Soccer: [
-            {
-                Team: "Chicago Fire Football Club",
-                Leauge: "MLS"
-            },
-            {
-                Team: "Chicago Red Stars",
-                Leauge: "WPS"
-            }
-        ]
-    }
+            League: "nfl",
+            Id: "3",
+            Sport: "football"
+        },
+        {
+            Team: "Chicago Bulls",
+            League: "nba",
+            Id: "4",
+            Sport: "basketball"
+        },
+        {
+            Team: "Chicago Sky",
+            League: "wnba",
+            Id: "19",
+            Sport: "basketball"
+        },
+        {
+            Team: "Chicago Cubs",
+            League: "mlb",
+            Id: "16",
+            Sport: "baseball"
+        },
+        {
+            Team: "Chicago White Sox",
+            League: "mlb",
+            Id: "4",
+            Sport: "baseball"
+        },
+        /*{
+            Team: "Chicago Fire FC",
+            League: "usa.1",
+            Id: "182",
+            Sport: "soccer"
+        },
+        {
+            Team: "Chicago Red Stars",
+            League: "usa.nwsl",
+            Id: "15360",
+            Sport: "soccer"
+        }*/
+    ],
+    TestMode: false,
+    Timeout: 1000 * 60 * 15 // 15 minutes
 }

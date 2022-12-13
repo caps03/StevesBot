@@ -3,9 +3,7 @@ import {
     Events,
     Message
 } from 'discord.js';
-import nodeHtmlToImage from 'node-html-to-image';
 import { MessageHandler } from '../events/index.js';
-import { HockeyHtml } from '../templates/index.js';
 import { PartialUtils } from '../utils/index.js';
 export class Bot {
     private ready = false;
@@ -46,20 +44,6 @@ export class Bot {
         msg = await PartialUtils.fillMessage(msg);
         if (!msg) {
             return;
-        }
-        try {
-            let image = await nodeHtmlToImage({
-                html: HockeyHtml,
-                selector: '#hockeyBoxScoreContainerDiv'
-            });
-            msg.channel.send({
-                files: [{
-                    attachment: image as any,
-                    name: 'hockey.png'
-                }]
-            })
-        } catch (error) {
-            console.error(error);
         }
         try {
             await this.messageHandler.process(msg);
