@@ -7,7 +7,7 @@ import { main } from '../index.js';
 import { Bot } from './bot.js';
 class Team{
     private bot: Bot;
-    private channels: Array<TextChannel>;
+    private channels: Array<TextChannel> = new Array<TextChannel>();
     private name: string;
     private league: string;
     private id: string;
