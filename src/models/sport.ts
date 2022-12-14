@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { Message, TextBasedChannel, TextChannel } from 'discord.js';
+import { Message, TextChannel } from 'discord.js';
 import { DateTime } from 'luxon';
 import nodeHtmlToImage from 'node-html-to-image';
 import { Config } from '../config.js';
-import { main } from '../index.js';
 import { Bot } from './bot.js';
 class Team{
     public bot: Bot;

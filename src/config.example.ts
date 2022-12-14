@@ -1,6 +1,5 @@
 import { IntentsBitField, Partials } from "discord.js";
 export const Config = {
-    Developers: [""],
     Client: {
         Token: "",
         Channels: [
@@ -50,24 +49,6 @@ export const Config = {
             ],
             waitGuildTimeout: 15000,
             sweepers: {}
-        }
-    },
-    RateLimiting: {
-        Commands: {
-            Amount: 10,
-            Interval: 30
-        },
-        Buttons: {
-            Amount: 10,
-            Interval: 30
-        },
-        Triggers: {
-            Amount: 10,
-            Interval: 30
-        },
-        Reactions: {
-            Amount: 10,
-            Interval: 30
         }
     },
     Teams: [
@@ -120,6 +101,7 @@ export const Config = {
             Sport: "soccer"
         }*/
     ],
-    TestMode: false,
+    TestMode: true,
+    TestModeTimeout: 5000, // 5 seconds
     Timeout: 1000 * 60 * 15 // 15 minutes
 }
