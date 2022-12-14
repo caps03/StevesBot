@@ -1,14 +1,9 @@
 import { Client } from 'discord.js';
-import { MessageHandler, TriggerHandler } from './events/index.js';
+import { MessageHandler } from './events/index.js';
 import { Bot, Sport } from './models/index.js';
-import { EventDataService } from './services/index.js';
-import { Trigger } from './triggers/index.js';
 import { Config } from './config.js';
 export class Main {
-  private eventDataService: EventDataService = new EventDataService();
-  private triggers: Array<Trigger> = new Array<Trigger>();
-  private triggerHandler: TriggerHandler = new TriggerHandler(this.triggers, this.eventDataService);
-  private messageHandler: MessageHandler = new MessageHandler(this.triggerHandler);
+  private messageHandler: MessageHandler = new MessageHandler();
   private client: Client = new Client(Config.Client.ClientOptions);
   private bot: Bot = new Bot(Config.Client.Token, this.client, this.messageHandler);
   private sport: Sport;
@@ -18,13 +13,17 @@ export class Main {
     this.sport = new Sport(this.bot);
     setTimeout(() => {
       this.Update();
-    }, 5000);
+    }, Config.TestModeTimeout);
   }
   public async Update(): Promise<void> {
     await this.sport.UpdateGame();
+    let timeout = Config.Timeout;
+    if(Config.TestMode) {
+      timeout = Config.TestModeTimeout;
+    }
     setTimeout(() => {
       this.Update();
-    }, Config.Timeout);
+    }, timeout);
   }
 }
 export let main = new Main();

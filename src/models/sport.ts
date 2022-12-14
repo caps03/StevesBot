@@ -6,13 +6,13 @@ import { Config } from '../config.js';
 import { main } from '../index.js';
 import { Bot } from './bot.js';
 class Team{
-    private bot: Bot;
-    private channels: Array<TextChannel> = new Array<TextChannel>();
-    private name: string;
-    private league: string;
-    private id: string;
-    private sport: string;
-    private parts: number = 1;
+    public bot: Bot;
+    public channels: Array<TextChannel> = new Array<TextChannel>();
+    public name: string;
+    public league: string;
+    public id: string;
+    public sport: string;
+    public parts: number = 1;
     public nextEvent: {
         isToday: boolean,
         inProgress: boolean,
@@ -28,7 +28,7 @@ class Team{
         awayTeamAbbreviation: string,
         awayTeamLogo: string,
     };
-    private lastMessages: Array<Message> = new Array<Message>();
+    public lastMessages: Array<Message> = new Array<Message>();
     constructor(name: string, league: string, id: string, sport: string, bot: Bot) {
         this.bot = bot;
         this.name = name;
@@ -241,8 +241,10 @@ export class Sport {
         });
     }
     public UpdateGame(): void {
+        console.log("UpdateGame");
         this.teams.forEach(team => {
             if(team.nextEvent.isToday || Config.TestMode) {
+                console.log(team.name + " have a game today");
                 if(!team.nextEvent.isComplete && !team.nextEvent.inProgress) {
                     let today = DateTime.local();
                     if(today.hour >= team.nextEvent.date.getHours()) {
@@ -250,6 +252,7 @@ export class Sport {
                     }
                 }
                 if(team.nextEvent.inProgress || Config.TestMode) {
+                    console.log(team.name + " have a game in progress");
                     team.getScore();
                 }
             }

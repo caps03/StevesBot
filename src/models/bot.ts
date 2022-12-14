@@ -1,8 +1,4 @@
-import {
-    Client,
-    Events,
-    Message
-} from 'discord.js';
+import { Client, Events, Message } from 'discord.js';
 import { MessageHandler } from '../events/index.js';
 import { PartialUtils } from '../utils/index.js';
 export class Bot {

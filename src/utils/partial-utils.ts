@@ -1,20 +1,11 @@
-import {
-    DiscordAPIError,
-    RESTJSONErrorCodes as DiscordApiErrors,
-    Message,
-    MessageReaction,
-    PartialMessage,
-    PartialMessageReaction,
-    PartialUser,
-    User,
-} from 'discord.js';
+import { DiscordAPIError, RESTJSONErrorCodes, Message, MessageReaction, PartialMessage, PartialMessageReaction, PartialUser, User, } from 'discord.js';
 const IGNORED_ERRORS = [
-    DiscordApiErrors.UnknownMessage,
-    DiscordApiErrors.UnknownChannel,
-    DiscordApiErrors.UnknownGuild,
-    DiscordApiErrors.UnknownUser,
-    DiscordApiErrors.UnknownInteraction,
-    DiscordApiErrors.MissingAccess,
+    RESTJSONErrorCodes.UnknownMessage,
+    RESTJSONErrorCodes.UnknownChannel,
+    RESTJSONErrorCodes.UnknownGuild,
+    RESTJSONErrorCodes.UnknownUser,
+    RESTJSONErrorCodes.UnknownInteraction,
+    RESTJSONErrorCodes.MissingAccess,
 ];
 export class PartialUtils {
     public static async fillUser(user: User | PartialUser): Promise<User> {
