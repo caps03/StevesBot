@@ -1,0 +1,86 @@
+{
+    "Client": {
+        "Token": "",
+        "Channels": [
+            {
+                "Id": "",
+                "Type": "production"
+            },
+            {
+                "Id": "",
+                "Type": "development"
+            }
+        ],
+        "ClientOptions": {
+            "closeTime": 5000,
+            "shardCount": 1,
+            "partials": ["User", "Channel", "GuildMember", "Message", "Reaction", "GuildScheduledEvent", "ThreadMember"],
+            "failIfNotExists": true,
+            "presence": {},
+            "intents": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 1048576, 2097152],
+            "waitGuildTimeout": 15000,
+            "sweepers": {}
+        }
+    },
+    "Teams": [
+        {
+            "Team": "Chicago Blackhawks",
+            "League": "nhl",
+            "Id": "4",
+            "Sport": "hockey",
+            "Active": true
+        },
+        {
+            "Team": "Chicago Bears",
+            "League": "nfl",
+            "Id": "3",
+            "Sport": "football",
+            "Active": true
+        },
+        {
+            "Team": "Chicago Bulls",
+            "League": "nba",
+            "Id": "4",
+            "Sport": "basketball",
+            "Active": true
+        },
+        {
+            "Team": "Chicago Sky",
+            "League": "wnba",
+            "Id": "19",
+            "Sport": "basketball",
+            "Active": true
+        },
+        {
+            "Team": "Chicago Cubs",
+            "League": "mlb",
+            "Id": "16",
+            "Sport": "baseball",
+            "Active": true
+        },
+        {
+            "Team": "Chicago White Sox",
+            "League": "mlb",
+            "Id": "4",
+            "Sport": "baseball",
+            "Active": true
+        },
+        {
+            "Team": "Chicago Fire FC",
+            "League": "usa.1",
+            "Id": "182",
+            "Sport": "soccer",
+            "Active": false
+        },
+        {
+            "Team": "Chicago Red Stars",
+            "League": "usa.nwsl",
+            "Id": "15360",
+            "Sport": "soccer",
+            "Active": false
+        }
+    ],
+    "TestMode": true,
+    "TestModeTimeout": 5000,
+    "Timeout": 900000
+}

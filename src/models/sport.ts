@@ -2,8 +2,10 @@ import axios from 'axios';
 import { Message, TextChannel } from 'discord.js';
 import { DateTime } from 'luxon';
 import nodeHtmlToImage from 'node-html-to-image';
-import { Config } from '../config.js';
+import { createRequire } from 'node:module';
 import { Bot } from './bot.js';
+const require = createRequire(import.meta.url);
+let Config = require('../../config.json');
 class Team{
     public bot: Bot;
     public channels: Array<TextChannel> = new Array<TextChannel>();
@@ -235,8 +237,10 @@ export class Sport {
     constructor(bot: Bot) {
         this.bot = bot;
         Config.Teams.forEach(team => {
-            let teamObj = new Team(team.Team, team.League, team.Id, team.Sport, this.bot);
-            this.teams.push(teamObj);
+            if(team.Active || Config.TestMode) {
+                let teamObj = new Team(team.Team, team.League, team.Id, team.Sport, this.bot);
+                this.teams.push(teamObj);
+            }
         });
     }
     public UpdateGame(): void {

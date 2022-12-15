@@ -1,7 +1,9 @@
 import { Client } from 'discord.js';
+import { createRequire } from 'node:module';
 import { MessageHandler } from './events/index.js';
 import { Bot, Sport } from './models/index.js';
-import { Config } from './config.js';
+const require = createRequire(import.meta.url);
+let Config = require('../config.json');
 export class Main {
   private messageHandler: MessageHandler = new MessageHandler();
   private client: Client = new Client(Config.Client.ClientOptions);
