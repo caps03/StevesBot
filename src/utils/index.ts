@@ -1,1 +1,1 @@
-export { PartialUtils } from './partial-utils.js';
+export { PartialUtils } from "./partial-utils.js";
