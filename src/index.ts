@@ -32,7 +32,7 @@ export class Main {
     }, Config.TestModeTimeout);
   }
   public async Update(): Promise<void> {
-    //await this.sport.UpdateGame();
+    await this.Sport.UpdateGame();
     let timeout = Config.Timeout;
     if (Config.TestMode) {
       //timeout = Config.TestModeTimeout;
