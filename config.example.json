@@ -1,6 +1,17 @@
 {
   "Client": {
     "Token": "",
+    "ClientId": "",
+    "GuidIds": [
+      {
+        "Id": "",
+        "Type": "production"
+      },
+      {
+        "Id": "",
+        "Type": "development"
+      }
+    ],
     "Channels": [
       {
         "Id": "",
@@ -35,60 +46,11 @@
   },
   "Teams": [
     {
-      "Team": "Chicago Blackhawks",
-      "League": "nhl",
-      "Id": "4",
-      "Sport": "hockey",
+      "Team": "",
+      "League": "",
+      "Id": "",
+      "Sport": "",
       "Active": true
-    },
-    {
-      "Team": "Chicago Bears",
-      "League": "nfl",
-      "Id": "3",
-      "Sport": "football",
-      "Active": true
-    },
-    {
-      "Team": "Chicago Bulls",
-      "League": "nba",
-      "Id": "4",
-      "Sport": "basketball",
-      "Active": true
-    },
-    {
-      "Team": "Chicago Sky",
-      "League": "wnba",
-      "Id": "19",
-      "Sport": "basketball",
-      "Active": true
-    },
-    {
-      "Team": "Chicago Cubs",
-      "League": "mlb",
-      "Id": "16",
-      "Sport": "baseball",
-      "Active": true
-    },
-    {
-      "Team": "Chicago White Sox",
-      "League": "mlb",
-      "Id": "4",
-      "Sport": "baseball",
-      "Active": true
-    },
-    {
-      "Team": "Chicago Fire FC",
-      "League": "usa.1",
-      "Id": "182",
-      "Sport": "soccer",
-      "Active": false
-    },
-    {
-      "Team": "Chicago Red Stars",
-      "League": "usa.nwsl",
-      "Id": "15360",
-      "Sport": "soccer",
-      "Active": false
     }
   ],
   "TestMode": true,

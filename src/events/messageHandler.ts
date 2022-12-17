@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { EventHandler } from "./";
+import { EventHandler } from ".";
 export class MessageHandler implements EventHandler {
   constructor() {}
   public async process(msg: Message): Promise<void> {

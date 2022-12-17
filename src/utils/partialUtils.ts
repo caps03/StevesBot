@@ -1,13 +1,4 @@
-import {
-  DiscordAPIError,
-  RESTJSONErrorCodes,
-  Message,
-  MessageReaction,
-  PartialMessage,
-  PartialMessageReaction,
-  PartialUser,
-  User,
-} from "discord.js";
+import { DiscordAPIError, RESTJSONErrorCodes, Message, PartialMessage } from "discord.js";
 const IGNORED_ERRORS = [
   RESTJSONErrorCodes.UnknownMessage,
   RESTJSONErrorCodes.UnknownChannel,
