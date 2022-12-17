@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import { createRequire } from "node:module";
-import { Bot } from "./bot.js";
+import { Bot } from "./index";
 import { Team } from "./index.js";
 const require = createRequire(import.meta.url);
 let Config = require("../../config.json");
