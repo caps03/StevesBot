@@ -1,5 +1,7 @@
-import { Client, Events, Message } from "discord.js";
-import { MessageHandler } from "../events/index.js";
+import { AutocompleteInteraction, ButtonInteraction, Client, CommandInteraction, Events, Interaction, Message } from "discord.js";
+import { GetNextGame } from "../commands/getNextGame.js";
+import { Command } from "../commands/index.js";
+import { ButtonHandler, CommandHandler, MessageHandler } from "../events/index.js";
 import { PartialUtils } from "../utils/index.js";
 export class Bot {
   private ready = false;
@@ -7,10 +9,16 @@ export class Bot {
   public client: Client;
   private messageHandler: MessageHandler;
   private userId: string;
+  private commandHandler: CommandHandler;
+  private buttonHandler: ButtonHandler;
   constructor(token: string, client: Client, messageHandler: MessageHandler) {
     this.token = token;
     this.client = client;
     this.messageHandler = messageHandler;
+    let commands: Command[] = [
+        new GetNextGame()
+    ];
+    this.commandHandler = new CommandHandler(commands);
   }
   public async start(): Promise<void> {
     this.registerListeners();
@@ -19,6 +27,7 @@ export class Bot {
   private registerListeners(): void {
     this.client.on(Events.ClientReady, () => this.onReady());
     this.client.on(Events.MessageCreate, (msg: Message) => this.onMessage(msg));
+    this.client.on(Events.InteractionCreate, (intr: Interaction) => this.onInteraction(intr));
   }
   private async login(token: string): Promise<void> {
     try {
@@ -47,4 +56,23 @@ export class Bot {
       console.error(error);
     }
   }
+  private async onInteraction(interaction: Interaction): Promise<void> {
+    if (!this.ready) {
+        return;
+    }
+    //if (!interaction.isChatInputCommand()) return;
+    if (interaction instanceof CommandInteraction || interaction instanceof AutocompleteInteraction) {
+        try {
+            await this.commandHandler.process(interaction);
+        } catch (error) {
+          console.log(error);
+        }
+    } else if (interaction instanceof ButtonInteraction) {
+        try {
+            await this.buttonHandler.process(interaction);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
 }
