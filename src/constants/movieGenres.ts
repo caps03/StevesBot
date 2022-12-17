@@ -17,5 +17,5 @@ export enum MovieGenres {
   TVMovie = 10770,
   Thriller = 53,
   War = 10752,
-  Western = 37
+  Western = 37,
 }

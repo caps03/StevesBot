@@ -58,10 +58,10 @@
   "Timeout": 900000,
   "APIKeys": {
     "ESPN": {
-      "Url" : "https://site.api.espn.com/apis/site/"
+      "Url": "https://site.api.espn.com/apis/site/"
     },
     "TheMovieDB": {
-      "Url" : "https://api.themoviedb.org/",
+      "Url": "https://api.themoviedb.org/",
       "V3": {
         "Key": ""
       },
