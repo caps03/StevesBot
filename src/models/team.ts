@@ -3,7 +3,7 @@ import { Message, TextChannel } from "discord.js";
 import { DateTime } from "luxon";
 import nodeHtmlToImage from "node-html-to-image";
 import { createRequire } from "node:module";
-import { Bot } from "./bot.js";
+import { Bot } from "./index.js";
 const require = createRequire(import.meta.url);
 let Config = require("../../config.json");
 export class Team {
@@ -249,7 +249,11 @@ export class Team {
             files: [
               {
                 attachment: image as any,
-                name: this.NextEvent.awayTeam + "_VS_" + this.NextEvent.homeTeam + ".png",
+                name:
+                  this.NextEvent.awayTeam +
+                  "_VS_" +
+                  this.NextEvent.homeTeam +
+                  ".png",
               },
             ],
           });
@@ -261,7 +265,11 @@ export class Team {
             files: [
               {
                 attachment: image as any,
-                name: this.NextEvent.awayTeam + "_VS_" + this.NextEvent.homeTeam + ".png",
+                name:
+                  this.NextEvent.awayTeam +
+                  "_VS_" +
+                  this.NextEvent.homeTeam +
+                  ".png",
               },
             ],
           });
