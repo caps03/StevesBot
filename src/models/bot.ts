@@ -7,7 +7,7 @@ import {
   Interaction,
   Message,
 } from "discord.js";
-import { GetNextGame } from "../commands/index.js";
+import { GetNextGame, Movie } from "../commands/index.js";
 import { Command } from "../commands/index.js";
 import {
   ButtonHandler,
@@ -27,7 +27,9 @@ export class Bot {
     this.token = token;
     this.client = client;
     this.messageHandler = messageHandler;
-    let commands: Command[] = [new GetNextGame()];
+    let commands: Array<Command> = new Array<Command>();
+    commands.push(new GetNextGame());
+    commands.push(new Movie());
     this.commandHandler = new CommandHandler(commands);
   }
   public async start(): Promise<void> {

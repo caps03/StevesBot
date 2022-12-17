@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   APIApplicationCommandBasicOption,
   ApplicationCommandOptionType,
@@ -24,7 +25,7 @@ export class Arguments {
     });
     let apiApplicationCommandBasicOption: APIApplicationCommandBasicOption = {
       name: "sport",
-      description: "Sport",
+      description: "Sport Name",
       type: ApplicationCommandOptionType.String,
       choices: choices,
     };
@@ -48,7 +49,7 @@ export class Arguments {
     });
     let apiApplicationCommandBasicOption: APIApplicationCommandBasicOption = {
       name: "team",
-      description: "Team",
+      description: "Team Name",
       type: ApplicationCommandOptionType.String,
       choices: choices,
     };
@@ -75,7 +76,40 @@ export class Arguments {
     });
     let apiApplicationCommandBasicOption: APIApplicationCommandBasicOption = {
       name: "team",
-      description: "Team",
+      description: "Team Name",
+      type: ApplicationCommandOptionType.String,
+      choices: choices,
+    };
+    return apiApplicationCommandBasicOption;
+  }
+  public static GetPopularMovies(): APIApplicationCommandBasicOption {
+    let choices: Array<{
+      name: string;
+      value: string;
+    }> = new Array();
+    /*let popularMovies = await axios.get<any>(
+      Config.APIKeys.TheMovieDB.Url + "3/movie/popular?api_key=" + Config.APIKeys.TheMovieDB.V3.Key,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+    if(popularMovies?.data?.results?.length > 0){
+      popularMovies.data.results.forEach((movie: any) => {
+        if (
+          choices.filter((choice) => choice.name === movie.title).length == 0
+        ) {
+          choices.push({
+            name: movie.title,
+            value: movie.title,
+          });
+        }
+      });
+    }*/
+    let apiApplicationCommandBasicOption: APIApplicationCommandBasicOption = {
+      name: "movie",
+      description: "Movie Title",
       type: ApplicationCommandOptionType.String,
       choices: choices,
     };

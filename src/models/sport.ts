@@ -23,10 +23,8 @@ export class Sport {
     });
   }
   public UpdateGame(): void {
-    console.log("UpdateGame");
     this.Teams.forEach((team) => {
       if (team.NextEvent.isToday || Config.TestMode) {
-        console.log(team.Name + " have a game today");
         if (!team.NextEvent.isComplete && !team.NextEvent.inProgress) {
           let today = DateTime.local();
           if (today.hour >= team.NextEvent.date.getHours()) {
@@ -34,7 +32,6 @@ export class Sport {
           }
         }
         if (team.NextEvent.inProgress || Config.TestMode) {
-          console.log(team.Name + " have a game in progress");
           team.getScore();
         }
       }

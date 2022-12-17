@@ -55,5 +55,19 @@
   ],
   "TestMode": true,
   "TestModeTimeout": 5000,
-  "Timeout": 900000
+  "Timeout": 900000,
+  "APIKeys": {
+    "ESPN": {
+      "Url" : "https://site.api.espn.com/apis/site/"
+    },
+    "TheMovieDB": {
+      "Url" : "https://api.themoviedb.org/",
+      "V3": {
+        "Key": ""
+      },
+      "V4": {
+        "Key": ""
+      }
+    }
+  }
 }

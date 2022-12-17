@@ -33,10 +33,10 @@ export class GetNextGame implements Command {
           team.Name + "'s next game is " + team.NextEvent.date
         );
       } else {
-        await InteractionUtils.send(intr, "Next Event Not Found!");
+        await InteractionUtils.send(intr, "Next event not found for team " + team.Name + "!");
       }
     } else {
-      await InteractionUtils.send(intr, "Team Not Found!");
+      await InteractionUtils.send(intr, "Team " + teamName + " not found!");
     }
   }
 }

@@ -92,7 +92,7 @@ export class Team {
   }
   private async getNextEvent(): Promise<void> {
     let data = await axios.get<any>(
-      "https://site.api.espn.com/apis/site/v2/sports/" +
+      Config.APIKeys.ESPN.Url + "v2/sports/" +
         this.Sport +
         "/" +
         this.league +
