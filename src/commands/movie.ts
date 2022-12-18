@@ -90,7 +90,7 @@ export class Movie implements Command {
       embed.setImage(backdropPath);
       await InteractionUtils.send(intr, embed);
     } else {
-      await InteractionUtils.send(intr, "Team Not Found!");
+      await InteractionUtils.send(intr, "Movie " + movie + " not found!");
     }
   }
 }

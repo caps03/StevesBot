@@ -278,6 +278,7 @@ export class Team {
       }
       if (this.NextEvent.isComplete) {
         this.lastMessages = new Array<Message>();
+        this.getNextEvent();
       }
     }
   }
