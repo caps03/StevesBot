@@ -169,112 +169,118 @@ export class Team {
         this.parts = data.data.competitions[0].competitors[0].linescores.length;
       }
       let status = data.data.status.type.detail;
-      if (status == "Final") {
+      if (!this.NextEvent.inProgress && status == "Final") {
         this.NextEvent.isComplete = true;
-        this.NextEvent.inProgress = false;
-      }
-      let html = `<div id="ContainerDiv" style="display: flex; width: 100%; margin: 20px; padding: 20px;">`;
-      html += `<div style="display: flex; padding: 10px; width: 100%">`;
-      html += `<div style="align-self: center; padding: 10px; width: 100%">`;
-      html += `<span style="font-size: large; width: 100%">${this.NextEvent.awayTeam}</span>`;
-      html += `</div>`;
-      html += `<div style="padding: 10px; width: 100%">`;
-      html += `<img src="${this.NextEvent.awayTeamLogo}" style="width: 100px;">`;
-      html += `</div>`;
-      html += `<div style="align-self: center; padding: 10px; width: 100%">`;
-      html += `<span style="font-weight: bold; font-size: xxx-large; width: 100%">${data.data.competitions[0].competitors[1].score}</span>`;
-      html += `</div>`;
-      html += `</div>`;
-      html += `<div style="padding: 10px; width: 100%">`;
-      html += `<div style="text-align: center; width: 100%">`;
-      html += `<span>${status}</span>`;
-      html += `</div>`;
-      html += `<div style="padding: 10px;min-width: 200px; width: 100%">`;
-      html += `<table style="width: 100%;border-collapse: collapse;border-spacing: 0;">`;
-      html += `<thead style="width: 100%;">`;
-      html += `<tr style="width: 100%; border-bottom: 1px solid #dcdddf;">`;
-      html += `<th> </th>`;
-      for (let a = 1; a <= this.parts; a++) {
-        html += `<th style="text-align: center; width: 30px;">` + a + `</th>`;
-      }
-      html += `<th style="text-align: center; width: 30px;">T</th>`;
-      html += `</tr>`;
-      html += `</thead>`;
-      html += `<tbody>`;
-      html += `<tr>`;
-      html += `<td>${this.NextEvent.awayTeamAbbreviation}</td>`;
-      for (let b: number = 0; b < this.parts; b++) {
-        let value = "-";
-        if (data.data.competitions[0].competitors[1].linescores?.length > b) {
-          value = data.data.competitions[0].competitors[1].linescores[b].value;
-        }
-        html += `<td style="text-align: center; width: 30px;">${value}</td>`;
-      }
-      html += `<td style="text-align: center; width: 30px; font-weight: bold;">${data.data.competitions[0].competitors[1].score}</td>`;
-      html += `</tr>`;
-      html += `<tr>`;
-      html += `<tr>`;
-      html += `<td>${this.NextEvent.homeTeamAbbreviation}</td>`;
-      for (let c = 0; c < this.parts; c++) {
-        let value = "-";
-        if (data.data.competitions[0].competitors[0].linescores?.length > c) {
-          value = data.data.competitions[0].competitors[0].linescores[c].value;
-        }
-        html += `<td style="text-align: center; width: 30px;">${value}</td>`;
-      }
-      html += `<td style="text-align: center; width: 30px; font-weight: bold;">${data.data.competitions[0].competitors[0].score}</td>`;
-      html += `</tr>`;
-      html += `</tbody>`;
-      html += `</table>`;
-      html += `</div>`;
-      html += `</div>`;
-      html += `<div style="display: flex; padding: 10px; width: 100%">`;
-      html += `<div style="align-self: center; padding: 10px; width: 100%">`;
-      html += `<span style="font-weight: bold; font-size: xxx-large; width: 100%">${data.data.competitions[0].competitors[0].score}</span>`;
-      html += `</div>`;
-      html += `<div style="padding: 10px; width: 100%">`;
-      html += `<img src="${this.NextEvent.homeTeamLogo}" style="width: 100px;">`;
-      html += `</div>`;
-      html += `<div style="align-self: center; padding: 10px; width: 100%">`;
-      html += `<span style="font-size: large; width: 100%">${this.NextEvent.homeTeam}</span>`;
-      html += `</div>`;
-      html += `</div>`;
-      html += `</div>`;
-      let image = await nodeHtmlToImage({
-        html: html,
-        selector: "#ContainerDiv",
-      });
-      if (this.lastMessages.length == 0) {
-        this.channels.forEach(async (channel) => {
-          let message: Message = await channel.send({
-            files: [
-              {
-                attachment: image as any,
-                name:
-                  this.NextEvent.awayTeam +
-                  "_VS_" +
-                  this.NextEvent.homeTeam +
-                  ".png",
-              },
-            ],
-          });
-          this.lastMessages.push(message);
-        });
       } else {
-        this.lastMessages.forEach(async (message) => {
-          message.edit({
-            files: [
-              {
-                attachment: image as any,
-                name:
-                  this.NextEvent.awayTeam +
-                  "_VS_" +
-                  this.NextEvent.homeTeam +
-                  ".png",
-              },
-            ],
-          });
+        if (status == "Final") {
+          this.NextEvent.isComplete = true;
+          this.NextEvent.inProgress = false;
+        }
+        let html = `<div id="ContainerDiv" style="display: flex; width: 100%; margin: 20px; padding: 20px;">`;
+        html += `<div style="display: flex; padding: 10px; width: 100%">`;
+        html += `<div style="align-self: center; padding: 10px; width: 100%">`;
+        html += `<span style="font-size: large; width: 100%">${this.NextEvent.awayTeam}</span>`;
+        html += `</div>`;
+        html += `<div style="padding: 10px; width: 100%">`;
+        html += `<img src="${this.NextEvent.awayTeamLogo}" style="width: 100px;">`;
+        html += `</div>`;
+        html += `<div style="align-self: center; padding: 10px; width: 100%">`;
+        html += `<span style="font-weight: bold; font-size: xxx-large; width: 100%">${data.data.competitions[0].competitors[1].score}</span>`;
+        html += `</div>`;
+        html += `</div>`;
+        html += `<div style="padding: 10px; width: 100%">`;
+        html += `<div style="text-align: center; width: 100%">`;
+        html += `<span>${status}</span>`;
+        html += `</div>`;
+        html += `<div style="padding: 10px;min-width: 200px; width: 100%">`;
+        html += `<table style="width: 100%;border-collapse: collapse;border-spacing: 0;">`;
+        html += `<thead style="width: 100%;">`;
+        html += `<tr style="width: 100%; border-bottom: 1px solid #dcdddf;">`;
+        html += `<th> </th>`;
+        for (let a = 1; a <= this.parts; a++) {
+          html += `<th style="text-align: center; width: 30px;">` + a + `</th>`;
+        }
+        html += `<th style="text-align: center; width: 30px;">T</th>`;
+        html += `</tr>`;
+        html += `</thead>`;
+        html += `<tbody>`;
+        html += `<tr>`;
+        html += `<td>${this.NextEvent.awayTeamAbbreviation}</td>`;
+        for (let b: number = 0; b < this.parts; b++) {
+          let value = "-";
+          if (data.data.competitions[0].competitors[1].linescores?.length > b) {
+            value =
+              data.data.competitions[0].competitors[1].linescores[b].value;
+          }
+          html += `<td style="text-align: center; width: 30px;">${value}</td>`;
+        }
+        html += `<td style="text-align: center; width: 30px; font-weight: bold;">${data.data.competitions[0].competitors[1].score}</td>`;
+        html += `</tr>`;
+        html += `<tr>`;
+        html += `<tr>`;
+        html += `<td>${this.NextEvent.homeTeamAbbreviation}</td>`;
+        for (let c = 0; c < this.parts; c++) {
+          let value = "-";
+          if (data.data.competitions[0].competitors[0].linescores?.length > c) {
+            value =
+              data.data.competitions[0].competitors[0].linescores[c].value;
+          }
+          html += `<td style="text-align: center; width: 30px;">${value}</td>`;
+        }
+        html += `<td style="text-align: center; width: 30px; font-weight: bold;">${data.data.competitions[0].competitors[0].score}</td>`;
+        html += `</tr>`;
+        html += `</tbody>`;
+        html += `</table>`;
+        html += `</div>`;
+        html += `</div>`;
+        html += `<div style="display: flex; padding: 10px; width: 100%">`;
+        html += `<div style="align-self: center; padding: 10px; width: 100%">`;
+        html += `<span style="font-weight: bold; font-size: xxx-large; width: 100%">${data.data.competitions[0].competitors[0].score}</span>`;
+        html += `</div>`;
+        html += `<div style="padding: 10px; width: 100%">`;
+        html += `<img src="${this.NextEvent.homeTeamLogo}" style="width: 100px;">`;
+        html += `</div>`;
+        html += `<div style="align-self: center; padding: 10px; width: 100%">`;
+        html += `<span style="font-size: large; width: 100%">${this.NextEvent.homeTeam}</span>`;
+        html += `</div>`;
+        html += `</div>`;
+        html += `</div>`;
+        let image = await nodeHtmlToImage({
+          html: html,
+          selector: "#ContainerDiv",
         });
+        if (this.lastMessages.length == 0) {
+          this.channels.forEach(async (channel) => {
+            let message: Message = await channel.send({
+              files: [
+                {
+                  attachment: image as any,
+                  name:
+                    this.NextEvent.awayTeam +
+                    "_VS_" +
+                    this.NextEvent.homeTeam +
+                    ".png",
+                },
+              ],
+            });
+            this.lastMessages.push(message);
+          });
+        } else {
+          this.lastMessages.forEach(async (message) => {
+            message.edit({
+              files: [
+                {
+                  attachment: image as any,
+                  name:
+                    this.NextEvent.awayTeam +
+                    "_VS_" +
+                    this.NextEvent.homeTeam +
+                    ".png",
+                },
+              ],
+            });
+          });
+        }
       }
       if (this.NextEvent.isComplete) {
         this.lastMessages = new Array<Message>();
