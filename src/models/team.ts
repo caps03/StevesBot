@@ -284,7 +284,10 @@ export class Team {
       }
       if (this.NextEvent.isComplete) {
         this.lastMessages = new Array<Message>();
-        this.getNextEvent();
+        let today = DateTime.local();
+        if (today.day > this.NextEvent.date.getDate()) {
+          this.getNextEvent();
+        }
       }
     }
   }

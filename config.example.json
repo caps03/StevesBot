@@ -5,21 +5,13 @@
     "GuidIds": [
       {
         "Id": "",
-        "Type": "production"
-      },
-      {
-        "Id": "",
-        "Type": "development"
+        "Type": ""
       }
     ],
     "Channels": [
       {
         "Id": "",
-        "Type": "production"
-      },
-      {
-        "Id": "",
-        "Type": "development"
+        "Type": ""
       }
     ],
     "ClientOptions": {
@@ -69,5 +61,10 @@
         "Key": ""
       }
     }
+  },
+  "User": {
+    "Domain": "",
+    "Account": "",
+    "Password": ""
   }
 }
