@@ -51,6 +51,9 @@ export class Movie implements Command {
       let rating: number = movieSearch?.data?.results[0].vote_average;
       let genreIds: Array<number> = movieSearch?.data?.results[0].genre_ids;
       let releaseDate: string = movieSearch?.data?.results[0].release_date;
+      let budget: number = movieData?.data?.budget;
+      let revenue: number = movieData?.data?.revenue;
+      let tagline: string = movieData?.data?.tagline;
       let backdropPath: string =
         "https://www.themoviedb.org/t/p/w533_and_h300_bestv2/" +
         movieSearch?.data?.results[0].backdrop_path;
@@ -83,9 +86,12 @@ export class Movie implements Command {
       embed.setThumbnail(posterPath);
       embed.addFields(
         { name: "Overview", value: overview, inline: false },
-        { name: "Rating", value: rating.toString(), inline: false },
+        { name: "Tagline", value: tagline, inline: false },
+        { name: "Rating", value: rating.toString(), inline: true },
         { name: "Genres", value: genres, inline: false },
-        { name: "Release Date", value: releaseDate, inline: false }
+        { name: "Release Date", value: releaseDate, inline: true },
+        { name: "Budget", value: "$" + new Intl.NumberFormat().format(budget), inline: true },
+        { name: "Revenue", value: "$" + new Intl.NumberFormat().format(revenue), inline: true }
       );
       embed.setImage(backdropPath);
       await InteractionUtils.send(intr, embed);

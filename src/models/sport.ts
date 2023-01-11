@@ -10,7 +10,7 @@ export class Sport {
   constructor(bot: Bot) {
     this.bot = bot;
     Config.Teams.forEach((team) => {
-      if (team.Active || Config.TestMode) {
+      if (team.Active) {
         let teamObj = new Team(
           team.Team,
           team.League,

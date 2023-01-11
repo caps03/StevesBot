@@ -14,7 +14,7 @@ export class Arguments {
     }> = new Array();
     Config.Teams.forEach((team) => {
       if (
-        (team.Active || Config.TestMode) &&
+        team.Active &&
         choices.filter((choice) => choice.name === team.Sport).length == 0
       ) {
         choices.push({
@@ -38,7 +38,7 @@ export class Arguments {
     }> = new Array();
     Config.Teams.forEach((team) => {
       if (
-        (team.Active || Config.TestMode) &&
+        team.Active &&
         choices.filter((choice) => choice.name === team.Team).length == 0
       ) {
         choices.push({
@@ -65,7 +65,7 @@ export class Arguments {
     Config.Teams.forEach((team) => {
       if (
         team.Sport == sport &&
-        (team.Active || Config.TestMode) &&
+        team.Active &&
         choices.filter((choice) => choice.name === team.Team).length == 0
       ) {
         choices.push({

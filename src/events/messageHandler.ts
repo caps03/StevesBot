@@ -7,5 +7,12 @@ export class MessageHandler implements EventHandler {
     if (msg.system || msg.author.id === msg.client.user?.id) {
       return;
     }
+    if(msg.content.toLowerCase().includes("standings as of") &&
+    msg.content.toLowerCase().includes("* 🥇") &&
+    msg.content.toLowerCase().includes("* 🥈") &&
+    msg.content.toLowerCase().includes("* 🥉")) {
+      console.log("msg.content", msg.content);
+      return;
+    }
   }
 }
